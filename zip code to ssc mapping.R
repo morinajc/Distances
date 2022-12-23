@@ -1,6 +1,6 @@
 ## Zip code matching to SSC station ##
 ## Joe Morina 12/05/2022 ##
-library(Raster)
+library(raster)
 
 x1 = read.csv("zips.csv", header=T) # zip code centroids (lat/lon) for VA
 
