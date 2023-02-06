@@ -1,7 +1,7 @@
 
 library(raster)
 
-x1 <- read.csv("zips.csv", header=T) # zip code centroids (lat/lon) for VA
+x1 <- read.csv("zips.csv", header=T) # zip code centroids (lat/lon) for VA, use ZCTA.csv for ZCTA centroids
 y1 <- read.csv("ssc.csv", header=T) # SSC stations (lat/lon) for VA and neighboring state
 d1 <- pointDistance(x1[,3:2], y1[,3:2], 
                     lonlat=TRUE, allpairs=T)  # calculate distance between all pairs
