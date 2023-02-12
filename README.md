@@ -1,4 +1,4 @@
-# Calculating the distances between points 
+# Calculating distances between points 
 
 The objective of this script is to calculate distances between points on the WGS ellipsoid using the Raster package. In this example, zipcode/ZCTAs of the state of Virginia were mapped to the nearest Spatial Synoptic Classification (SSC) weather station to assess specific weather patterns. In particuluar, this project is examining weather-type classifications that are associated with extreme heat. The GPS coordinates for SSC stations were obtained from http://sheridan.geog.kent.edu/ssc3.html. Zipcode and ZCTA centroids were obtained from geonames.org and nber.org, respectively. 
 
