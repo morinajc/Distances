@@ -1,9 +1,8 @@
 library(raster)
+library(stringr)
 
-####--Virginia Locations--####
-
-# Read in files
-x1 = read.csv("zips.csv", header=T) # Zipcode centroids
+# 1. Virginia Locations ####
+# Read files
 x1 = read.csv("zcta.csv", header=T) # ZCTA centroids
 y1 = read.csv("ssc.csv", header=T) # SSC weather stations
 
@@ -27,20 +26,17 @@ for (i in 1:nrow(x1)) {
 
 text(y1[,3:2], labels=y1$SSC_ID, pos=3, cex=.75, col="red") 
 
-write.csv(x1,"SSC VA mapped.csv")
+write.csv(x1,"ZCTA_VA_mapped.csv")
 
-##--Whole US--####
-
-x2 = read.csv("US.lower.csv", header=T) # zipcode centroids
-x2 = read.csv("usaZCTA.csv",header=T) # zcta centroids
-y2 = read.csv("usa.ssc.csv", header=T) # SSC gps
+# 2. Contiguous US ####
+x2 <- read.csv("utzz.csv", colClasses = c(zcta5 = "character")) # need to turn zcta into a character
+y2 <- read.csv("usa.ssc.mod.csv", header=T) # SSC gps with pruned stations
 
 d2 <- pointDistance(x2[,3:2], y2[,3:2], lonlat=TRUE, allpairs=T)
 i2 <- apply(d2, 1, which.min) 
 
 x2$ID = y2$ID[i2]
 x2$distance = d2[cbind(1:nrow(d2), i2)]
-
 
 plot(x2[,3:2], col="blue", pch=20)
 points(y2[,3:2], col="red", pch=20)
@@ -50,4 +46,4 @@ for (i2 in 1:nrow(x2)) {
   arrows(x2[i2,3], x2[i2,2], y2[j2,3], y2[j2,2],length=.01) 
 }
 
-write.csv(x2,"ZCTA USA mapped.csv")
+write.csv(x2,"ZCTA_USA_mapped.csv")
